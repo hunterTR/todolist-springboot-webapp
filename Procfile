@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -jar target/*.jar
+web: java -Dserver.port=$PORT -jar  target/to-doList-1.0-SNAPSHOT.jar
