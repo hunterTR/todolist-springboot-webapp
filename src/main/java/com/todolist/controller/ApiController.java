@@ -1,6 +1,6 @@
 package com.todolist.controller;
 
-import com.todolist.model.Todo;
+import com.todolist.model.todo.Todo;
 import com.todolist.repository.TodoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,7 +24,5 @@ public class ApiController
     public List<Todo> list(){
         return todoRepository.findAll();
     }
-
-
 
 }
