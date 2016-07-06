@@ -10,7 +10,15 @@ import javax.persistence.MappedSuperclass;
  */
 @MappedSuperclass
 public class BaseModel {
+    public long getId() {
+        return Id;
+    }
+
+    public void setId(long id) {
+        Id = id;
+    }
+
     @javax.persistence.Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    public int Id;
+    protected long Id;
 }

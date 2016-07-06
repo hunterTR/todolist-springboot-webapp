@@ -1,14 +1,20 @@
 package com.todolist.service.user;
 
+import com.todolist.model.user.Role;
 import com.todolist.model.user.User;
 import com.todolist.model.user.UserForm;
 import com.todolist.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
+
 import java.util.Collection;
+import java.util.Optional;
 
 /**
  * Created by cemkaya on 03/07/16.
  */
+@Service
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
@@ -20,21 +26,25 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUserById(long id) {
-        return null;
+        return userRepository.findOne(id);
     }
 
     @Override
-    public User getUserByEmail(String email) {
-        return null;
+    public Optional<User> getUserByUsername(String username) {
+        return userRepository.findOneByUsername(username);
     }
 
     @Override
     public Collection<User> getAllUsers() {
-        return null;
+        return userRepository.findAll();
     }
 
     @Override
     public User create(UserForm form) {
-        return null;
+        User user = new User();
+        user.setUsername(form.getUsername());
+        user.setPassword(new BCryptPasswordEncoder().encode(form.getPassword()));
+        user.setRole(Role.USER);
+        return userRepository.save(user);
     }
 }

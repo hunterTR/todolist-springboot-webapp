@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Create a new user</title>
+</head>
+<body>
+<nav role="navigation">
+    <ul>
+        <li><a href="/">Home</a></li>
+    </ul>
+</nav>
+
+<h1>Create a new user</h1>
+<p th:if="${loginError}">Wrong user or password</p>
+<form role="loginform" th:action="@{/user/login}" method="post">
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+    <div>
+        <label for="username">Username</label>
+        <input type="text" name="username" id="username" />
+    </div>
+    <div>
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" />
+    </div>
+    <div>
+        <label for="remember-me">Remember me</label>
+        <input type="checkbox" name="remember-me" id="remember-me"/>
+    </div>
+    <button type="submit">Sign in</button>
+</form>
+
+
+</body>
+</html>
