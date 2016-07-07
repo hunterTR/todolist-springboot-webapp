@@ -28,14 +28,21 @@ public class TodoController {
     @RequestMapping(value = "/todo",method = RequestMethod.GET)
     public ModelAndView getTodoList(Authentication authentication) {
         UserDetails currentUser = null;
-        if(authentication == null)
+
+        if(authentication != null)
+        {
+            currentUser = (UserDetails) authentication.getPrincipal();
+        }
+        else
         {
             return new ModelAndView("home");
         }
 
         List<Todo> todoList = todoRepository.findAll();
-
-        return new ModelAndView("todo", "todoList", todoList);
+        ModelAndView modelAndView = new ModelAndView("todo");
+        modelAndView.addObject("todoList",todoList);
+        modelAndView.addObject("user",currentUser);
+        return modelAndView;
     }
 
 
@@ -43,12 +50,19 @@ public class TodoController {
     @RequestMapping(value = "/todo/create",method = RequestMethod.GET)
     public ModelAndView createTodo(Authentication authentication) {
         UserDetails currentUser = null;
-        if(authentication == null)
+        if(authentication != null)
+        {
+            currentUser = (UserDetails) authentication.getPrincipal();
+        }
+        else
         {
             return new ModelAndView("home");
         }
 
-        return new ModelAndView("todoCreate", "form", new TodoForm());
+        ModelAndView modelAndView = new ModelAndView("todoCreate");
+        modelAndView.addObject("user",currentUser);
+        modelAndView.addObject("form",new TodoForm());
+        return modelAndView;
     }
 
     @RequestMapping(value = "/todo/create", method = RequestMethod.POST)
