@@ -2,9 +2,6 @@ package com.todolist.model.user;
 
 import org.springframework.security.core.authority.AuthorityUtils;
 
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-
 /**
  * Created by cemkaya on 06/07/16.
  */

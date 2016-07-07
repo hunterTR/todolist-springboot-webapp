@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Create a new todo</title>
+</head>
+<body>
+<nav role="navigation">
+    <ul>
+        <li><a href="/">Home</a></li>
+    </ul>
+</nav>
+
+<h1>Create a new TO DO</h1>
+
+<form name="form" action="#" th:action="@{/todo/create}"  th:object="${form}" method="post">
+    <div>
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name" th:field="*{name}"/>
+    </div>
+    <div>
+        <label for="content">Content</label>
+        <input type="text" name="content" id="content" th:field="*{content}" />
+    </div>
+    <button type="submit">Save</button>
+</form>
+
+</body>
+</html>

@@ -38,7 +38,7 @@ public class UserFormValidator implements Validator {
     }
 
     private void validateUsername(Errors errors, UserForm form) {
-        if (userService.getUserByUsername(form.getUsername()) != null) {
+        if (userService.getUserByUsername(form.getUsername()).isPresent()) {
             errors.reject("username.exists", "Username already exists");
         }
     }
