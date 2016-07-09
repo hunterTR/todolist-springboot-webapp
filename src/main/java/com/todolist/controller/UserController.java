@@ -44,10 +44,6 @@ public class UserController {
 
     @RequestMapping(value = "/user/create", method = RequestMethod.POST)
     public String handleUserForm(@Valid @ModelAttribute("form") UserForm form, BindingResult bindingResult,Authentication authentication) {
-        if(authentication != null)
-        {
-            return "redirect:/";
-        }
 
         if (bindingResult.hasErrors()) {
             return "userCreate";
@@ -70,7 +66,7 @@ public class UserController {
         {
             return new ModelAndView("home");
         }
-        return new ModelAndView("login", "loginError", error);
+        return new ModelAndView("login", "loginError", error.isPresent());
     }
 
 

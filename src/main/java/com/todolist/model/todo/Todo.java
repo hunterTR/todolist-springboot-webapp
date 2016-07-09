@@ -3,6 +3,8 @@ package com.todolist.model.todo;
 import com.todolist.model.BaseModel;
 
 import javax.persistence.*;
+import javax.print.attribute.DateTimeSyntax;
+import java.util.Date;
 
 /**
  * Created by cemkaya on 02/07/16.
@@ -14,56 +16,72 @@ public class Todo extends BaseModel {
     @javax.persistence.Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "Id", nullable = false, unique = true)
-    private long Id;
+    private long id;
     @Column(name = "Userid", nullable = false)
-    public long UserId;
+    public long userid;
     @Column(name = "Name")
-    public String Name;
+    public String name;
     @Column(name = "Content")
-    public String Content;
+    public String content;
     @Column(name = "Status")
-    public int Status;
+    public int status;
+    @Column(name = "CreateDate")
+    public Date createdate;
+    @Column(name = "UpdateDate")
+    public Date updatedate;
 
 
     public long getId() {
-        return Id;
+        return id;
     }
 
     public void setId(long id) {
-        this.Id = id;
+        this.id = id;
     }
 
     public long getUserId() {
-        return UserId;
+        return userid;
     }
 
-    public void setUserId(long userId) {
-        this.UserId = userId;
+    public void setUserId(long userid) {
+        this.userid = userid;
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public void setName(String name) {
-        this.Name = name;
+        this.name = name;
     }
     public String getContent() {
-        return Content;
+        return content;
     }
 
     public void setContent(String content) {
-        this.Content = content;
+        this.content = content;
     }
 
     public int getStatus() {
-        return Status;
+        return status;
     }
 
     public void setStatus(int status) {
-        this.Status = status;
+        this.status = status;
+    }
+    public Date getCreatedate() {
+        return createdate;
     }
 
+    public void setCreatedate(Date createdate) {
+        this.createdate = createdate;
+    }
+    public Date getUpdatedate() {
+        return updatedate;
+    }
 
-
+    public void setUpdatedate(Date updatedate) {
+        this.updatedate = updatedate;
+    }
 }
+

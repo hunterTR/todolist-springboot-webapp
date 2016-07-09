@@ -29,12 +29,18 @@
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li><a href="#" th:href="@{/}">Home</a></li>
-                <li><a href="#" th:href="@{/todo}">List</a></li>
+                <li><a href="#" th:href="@{/todo/ongoing}">Ongoing</a></li>
+                <li><a href="#" th:href="@{/todo/done}">Done</a></li>
                 <li><a href="#" th:href="@{/todo/create}">Add</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a th:if="${user}" th:href="@{/user/login}" th:text="${user.Username}"></a>
+                    <a th:if="${user}" th:text="${user.Username}"></a>
+                    <a th:unless="${user}" th:href="@{/user/login}">LOGIN</a>
+                </li>
+                <li>
+                    <a th:if="${user}" th:href="@{/user/logout}">LOGOUT</a>
+                    <a th:unless="${user}" th:href="@{/user/create}">REGISTER</a>
                 </li>
             </ul>
         </div>

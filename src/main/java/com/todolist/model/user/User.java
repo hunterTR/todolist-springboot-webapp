@@ -3,6 +3,7 @@ package com.todolist.model.user;
 import com.todolist.model.BaseModel;
 
 import javax.persistence.*;
+import java.util.Date;
 
 /**
  * Created by cemkaya on 03/07/16.
@@ -23,9 +24,12 @@ public class User{
     private String password;
     @Column(name = "Email" , unique = true)
     private String email;
-
     @Enumerated(EnumType.STRING)
     private Role role;
+    @Column(name = "CreateDate")
+    public Date createdate;
+    @Column(name = "UpdateDate")
+    public Date updatedate;
 
     public String getUsername() {
         return username;
@@ -56,6 +60,16 @@ public class User{
     }
     public void setId(long id) {
         this.id = id;
+    }
+    public void setCreatedate(Date createdate) {
+        this.createdate = createdate;
+    }
+    public Date getUpdatedate() {
+        return updatedate;
+    }
+
+    public void setUpdatedate(Date updatedate) {
+        this.updatedate = updatedate;
     }
 
 }

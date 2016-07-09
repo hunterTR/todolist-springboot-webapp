@@ -17,12 +17,5 @@ import java.util.List;
 @RequestMapping("api/v1/")
 public class ApiController
 {
-    @Autowired
-    private TodoRepository todoRepository;
-
-    @RequestMapping(value = "todolist",method = RequestMethod.GET)
-    public List<Todo> list(){
-        return todoRepository.findAll();
-    }
 
 }

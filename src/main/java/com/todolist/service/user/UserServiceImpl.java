@@ -9,6 +9,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.Optional;
 
 /**
@@ -45,6 +46,7 @@ public class UserServiceImpl implements UserService {
         user.setUsername(form.getUsername());
         user.setPassword(new BCryptPasswordEncoder().encode(form.getPassword()));
         user.setRole(Role.USER);
+        user.setCreatedate(new Date());
         return userRepository.save(user);
     }
 }

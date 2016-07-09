@@ -15,11 +15,11 @@
     <form name="form" action="#" th:action="@{/todo/create}"  th:object="${form}" method="post">
         <div>
             <label for="name">Name</label>
-            <input type="text" name="name" id="name" th:field="*{name}"/>
+            <input type="text" name="name" id="name" th:field="*{name}" class="form-control"/>
         </div>
         <div>
             <label for="content">Content</label>
-            <input type="text" name="content" id="content" th:field="*{content}" />
+            <input type="text" name="content" id="content" th:field="*{content}" class="form-control"/>
         </div>
         <button type="submit">Save</button>
     </form>

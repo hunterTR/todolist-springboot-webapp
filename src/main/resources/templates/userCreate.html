@@ -4,29 +4,36 @@
 <head lang="en">
 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-                <title>Create a new user</title>
+                <title>REGISTER</title>
             </head>
             <body>
 
-            <div layout:fragment="content"></div>
-            <h1>Create a new user</h1>
+            <div layout:fragment="content">
+            <h1>REGISTER</h1>
+                <div class="col-md-4">
+                    <div th:if="${spring.status.error}" class="alert alert-danger" role="alert">
+                        <p>The username or password you have entered is invalid, try again.</p>
+                    </div>
 
             <form name="form" action="#" th:action="@{/user/create}"  th:object="${form}" method="post">
 
                 <div>
                     <label for="username">Username</label>
-                    <input type="text" name="username" id="username" th:field="*{username}"/>
+                    <input type="text" name="username" id="username" th:field="*{username}" class="form-control"/>
                 </div>
                 <div>
                     <label for="password">Password</label>
-                    <input type="password" name="password" id="password" th:field="*{password}" />
+                    <input type="password" name="password" id="password" th:field="*{password}" class="form-control"/>
                 </div>
                 <div>
                     <label for="passwordRepeated">Repeat</label>
-                    <input type="password" name="passwordRepeated" id="passwordRepeated" th:field="*{passwordRepeated}" />
+                    <input type="password" name="passwordRepeated" id="passwordRepeated" th:field="*{passwordRepeated}" class="form-control"/>
                 </div>
-                <button type="submit">Save</button>
+                <button class="btn btn-lg btn-primary" type="submit">Register</button>
             </form>
+            </div>
+            </div>
+
 
             </body>
             </html>
