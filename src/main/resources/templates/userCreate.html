@@ -11,15 +11,17 @@
             <div layout:fragment="content">
             <h1>REGISTER</h1>
                 <div class="col-md-4">
-                    <div th:if="${spring.status.error}" class="alert alert-danger" role="alert">
-                        <p>The username or password you have entered is invalid, try again.</p>
+                    <div th:if="${errors}" class="alert alert-danger" role="alert">
+                        <div th:each="error : ${errors}">
+                            <p th:text="${error.defaultMessage}"></p>
+                        </div>
                     </div>
-
             <form name="form" action="#" th:action="@{/user/create}"  th:object="${form}" method="post">
 
                 <div>
                     <label for="username">Username</label>
                     <input type="text" name="username" id="username" th:field="*{username}" class="form-control"/>
+
                 </div>
                 <div>
                     <label for="password">Password</label>

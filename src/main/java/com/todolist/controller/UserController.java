@@ -43,9 +43,11 @@ public class UserController {
     }
 
     @RequestMapping(value = "/user/create", method = RequestMethod.POST)
-    public String handleUserForm(@Valid @ModelAttribute("form") UserForm form, BindingResult bindingResult,Authentication authentication) {
+    public String handleUserForm(@Valid @ModelAttribute("form") UserForm form, BindingResult bindingResult,Model model,Authentication authentication) {
 
         if (bindingResult.hasErrors()) {
+
+            model.addAttribute("errors",bindingResult.getAllErrors());
             return "userCreate";
         }
         try {
