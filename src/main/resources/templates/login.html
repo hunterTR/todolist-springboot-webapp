@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="_layout">
+<head lang="en">
+    <title>Create a new user</title>
+</head>
+<body>
+
+<div layout:fragment="content">
+
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <h1>LOG IN</h1>
+
+            <div th:if="${loginError}" class="alert alert-danger" role="alert">
+                <p>The username or password you have entered is invalid, try again.</p>
+            </div>
+<form role="loginform" th:action="@{/user/login}" method="post">
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+    <div>
+        <label for="username">Username</label>
+        <input type="text" name="username" id="username" class="form-control" />
+    </div>
+    <div>
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" class="form-control"/>
+    </div>
+    <div>
+        <label for="remember-me">Remember me</label>
+        <input type="checkbox" name="remember-me" id="remember-me" class="form-control"/>
+    </div>
+    <button class="btn btn-lg btn-primary" type="submit">Sign in</button>
+</form>
+</div>
+        <div class="col-md-4"></div>
+    </div>
+</div>
+
+
+</body>
+</html>
