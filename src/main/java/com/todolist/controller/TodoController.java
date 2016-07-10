@@ -42,7 +42,7 @@ public class TodoController {
         }
         else
         {
-            return new ModelAndView("home");
+            return new ModelAndView("login");
         }
 
         List<Todo> todoList = todoService.getByStatusAndUserId(1,currentUser.getId());
@@ -62,7 +62,7 @@ public class TodoController {
         }
         else
         {
-            return new ModelAndView("home");
+            return new ModelAndView("login");
         }
 
 
@@ -85,7 +85,7 @@ public class TodoController {
         }
         else
         {
-            return new ModelAndView("home");
+            return new ModelAndView("login");
         }
 
         ModelAndView modelAndView = new ModelAndView("todoCreate");
@@ -98,7 +98,7 @@ public class TodoController {
     public String handleTodoForm(@ModelAttribute("form") TodoForm form, Authentication authentication) {
         if(authentication == null)
         {
-            return "redirect:/";
+            return "redirect:/user/login";
         }
         try {
             CurrentUser currentUser = (CurrentUser) authentication.getPrincipal();
@@ -113,7 +113,7 @@ public class TodoController {
     public String updateTodo(@RequestParam long id, Authentication authentication) {
         if(authentication == null)
         {
-            return "redirect:/";
+            return "redirect:/user/login";
         }
         try {
             CurrentUser currentUser = (CurrentUser) authentication.getPrincipal();
