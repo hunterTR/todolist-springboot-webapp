@@ -3,8 +3,7 @@ package com.todolist.controller;
 import com.todolist.model.todo.Todo;
 import com.todolist.model.todo.TodoForm;
 import com.todolist.model.user.CurrentUser;
-import com.todolist.repository.TodoRepository;
-import org.omg.CORBA.Current;
+import com.todolist.service.todo.TodoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.core.Authentication;
@@ -15,8 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -26,12 +23,13 @@ import java.util.List;
 public class TodoController {
 
 
-    private final TodoRepository todoRepository;
+
+    private final TodoService todoService;
 
     @Autowired
-    public TodoController(TodoRepository todoRepository)
+    public TodoController(TodoService todoService)
     {
-        this.todoRepository = todoRepository;
+        this.todoService = todoService;
     }
 
     @RequestMapping(value = "/todo/ongoing",method = RequestMethod.GET)
@@ -47,7 +45,7 @@ public class TodoController {
             return new ModelAndView("home");
         }
 
-        List<Todo> todoList = todoRepository.findByStatusAndUserid(1,currentUser.getId());
+        List<Todo> todoList = todoService.getByStatusAndUserId(1,currentUser.getId());
         ModelAndView modelAndView = new ModelAndView("todo");
         modelAndView.addObject("todoList",todoList);
         modelAndView.addObject("user",currentUser);
@@ -68,7 +66,7 @@ public class TodoController {
         }
 
 
-        List<Todo> todoList = todoRepository.findByStatusAndUserid(2,currentUser.getId());
+        List<Todo> todoList = todoService.getByStatusAndUserId(2,currentUser.getId());
         ModelAndView modelAndView = new ModelAndView("todo");
         modelAndView.addObject("todoList",todoList);
         modelAndView.addObject("user",currentUser);
@@ -104,13 +102,7 @@ public class TodoController {
         }
         try {
             CurrentUser currentUser = (CurrentUser) authentication.getPrincipal();
-            Todo todo = new Todo();
-            todo.setName(form.getName());
-            todo.setContent(form.getContent());
-            todo.setUserId(currentUser.getId());
-            todo.setStatus(1);
-            todo.setCreatedate(new Date());
-            todoRepository.save(todo);
+            todoService.create(form,currentUser.getId());
         } catch (DataIntegrityViolationException e) {
             return "todoCreate";
         }
@@ -125,10 +117,8 @@ public class TodoController {
         }
         try {
             CurrentUser currentUser = (CurrentUser) authentication.getPrincipal();
-            Todo todo = todoRepository.findOne(id);
-            todo.setStatus(2);
-            todo.setUpdatedate(new Date());
-            todoRepository.save(todo);
+            todoService.update(2,id);
+
         } catch (DataIntegrityViolationException e) {
             return "todoCreate";
         }

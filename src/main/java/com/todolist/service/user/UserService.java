@@ -3,6 +3,7 @@ package com.todolist.service.user;
 import com.todolist.model.user.User;
 import com.todolist.model.user.UserForm;
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -11,6 +12,6 @@ import java.util.Optional;
 public interface UserService {
     User getUserById(long id);
     Optional<User> getUserByUsername(String email);
-    Collection<User> getAllUsers();
+    List<User> getAllUsers();
     User create(UserForm form);
 }
